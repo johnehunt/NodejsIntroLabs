@@ -1,5 +1,5 @@
 // Define how data is held
-var books = {};
+var books = [];
 
 // Set up some initial data
 books[1] = { isbn: 1, author: "Jos Jones", title: "JavaScript Today", price: 15.55 };
