@@ -47,7 +47,7 @@ app.use(express.static(path.resolve(__dirname,"public")));
 
 router
   .route("/books")
-  .get(books.getBooks)
+  .get(books.getAllBooks)
   .post(books.postBook)
   .put(books.updateBook);
 
