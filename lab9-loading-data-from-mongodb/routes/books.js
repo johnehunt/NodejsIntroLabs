@@ -6,23 +6,21 @@ function setupMongo() {
 }
 
 // Defines Controller functions
-function getBooks(req, res) {
-  const books = Books.getAllBooks();
-  res.json(books);
+function getAllBooks(req, res) {
+  console.log("routes.getAllBooks()");
+  Books.getAllBooks(res);
 }
 
 function postBook(req, res) {
   console.log("postBook", req.body);
   const book = req.body;
-  Books.addBook(book);
-  res.send("Book added");
+  Books.addBook(res, book);
 }
 
 function updateBook(req, res) {
   console.log("updateBook", req.body);
   const book = req.body;
-  Books.updateBook(book);
-  res.send("Book updated");
+  Books.updateBook(res, book);
 }
 
 function getBook(req, res) {
@@ -35,9 +33,8 @@ function getBook(req, res) {
 }
 
 function deleteBook(req, res) {
-  const id = req.params.id;
-  Books.deleteBook(id);
-  res.send("Book deleted");
+  const isbn = req.params.isbn;
+  Books.deleteBook(res, isbn);
 }
 
 function getData(req, rea) {
@@ -51,4 +48,4 @@ function getData(req, rea) {
 }
 
 // Now export functions from module
-module.exports = { getBooks, getBook, postBook, updateBook, deleteBook, getData, setupMongo };
+module.exports = { getAllBooks, getBook, postBook, updateBook, deleteBook, getData, setupMongo };
