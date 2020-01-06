@@ -36,7 +36,7 @@ function deleteBook(req, res) {
   res.send("Book deleted");
 }
 
-function getData(req, rea) {
+function getData(req, res) {
   const readStream = createReadStream("./data.txt");
   readStream.on("data", data => {
     res.write(data);
