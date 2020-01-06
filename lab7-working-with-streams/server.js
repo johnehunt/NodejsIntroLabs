@@ -68,3 +68,5 @@ app.listen(config.port, () => {
   console.log("Bookshop Started");
   console.log("Server Running - http://localhost:" + config.port);
 });
+
+module.exports = app; // for testing purposes only

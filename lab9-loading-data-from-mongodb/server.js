@@ -84,3 +84,5 @@ app.listen(config.port, () => {
   console.log("Server Running - http://localhost:" + config.port);
   books.setupMongo();
 });
+
+module.exports = app; // for testing purposes only
