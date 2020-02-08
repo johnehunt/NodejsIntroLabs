@@ -1,7 +1,8 @@
-console.log("setting up values");
+console.log("setting up custom module values");
 const messages = ["Welcome", "Hello", "Hi There", "Goodday"];
 var index = 0;
 
+// Defining function to be exported
 function messageOfTheDay() {
   console.log("In messageOfTheDay");
   const msg = messages[index];
@@ -12,4 +13,5 @@ function messageOfTheDay() {
   return msg;
 }
 
+// Don;t forget to export the message of the day fucntion
 module.exports = { messageOfTheDay };

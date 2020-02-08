@@ -15,6 +15,7 @@ const server = http.createServer(function(req, res) {
   else if (req.url == "/help")
     res.write("<h1>Bookshop Help</h1><p>This is the Help page.</p>");
   else if (req.url == "/")
+    // Use the custom module to generate a message of the day
     res.write("<h1>Hello Bookshop World!</h1><p>" + mod.messageOfTheDay() + "</p>");
   else {
     res.writeHead(404);
