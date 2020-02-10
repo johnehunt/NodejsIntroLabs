@@ -1,3 +1,10 @@
+class BookError extends Error {
+  constructor(args) {
+    super(args);
+    this.name = "BookError";
+  }
+}
+
 // Define how data is held
 var books = [];
 
@@ -26,12 +33,18 @@ function addBook(book) {
 }
 
 function updateBook(book) {
+  if (!(isbn in books)) {
+    throw new BookError("Unknown book with ISBN " + isbn);
+  }
   books[book.isbn] = book;
 }
 
 function deleteBook(isbn) {
+  if (!(isbn in books)) {
+    throw new BookError("Unknown book with ISBN " + isbn);
+  }
   delete books[isbn];
 }
 
 // Export functions from Module
-module.exports = { getAllBooks, addBook, updateBook, deleteBook };
+module.exports = { getAllBooks, addBook, updateBook, deleteBook, BookError };

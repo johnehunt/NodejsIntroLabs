@@ -56,6 +56,10 @@ router
   .get(books.getBook)
   .delete(books.deleteBook);
 
+  router
+  .route("/data")
+  .get(books.getData);
+
 // All routes will be prefixed with /api
 app.use("/api", router);
 
