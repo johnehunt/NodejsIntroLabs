@@ -2,6 +2,7 @@ console.log("Starting Bookshop HTTP Server");
 // Load required http module
 const http = require("http");
 
+// Create a server that will respond to different URLs
 const server = http.createServer(function(req, res) {
   // Access the request URL via req.url property
   // Determine the response based on the submitted url
