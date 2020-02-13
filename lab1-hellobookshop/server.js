@@ -4,7 +4,7 @@ const http = require("http");
 
 // Create the simple web application server
 const server = http.createServer(function(req, res) {
-  res.write("<h1>Hello Bookshop World!</h1><p>Welcome to the Bookshop Everyone.</p>"); 
+  res.write("Welcome to the World of the Bookshop Everyone."); 
   res.end(); 
 });
 
