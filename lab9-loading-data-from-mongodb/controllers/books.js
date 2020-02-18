@@ -8,19 +8,34 @@ function setupMongo() {
 // Defines Controller functions
 function getAllBooks(req, res) {
   console.log("routes.getAllBooks()");
-  Books.getAllBooks(res);
+  Books.getAllBooks().then((books) => {
+    res.json(books);
+  }).catch((error) => {
+    console.log(error);
+    res.status(400).send();
+  });
 }
 
 function postBook(req, res) {
   console.log("postBook", req.body);
   const book = req.body;
-  Books.addBook(res, book);
+  Books.addBook(book).then(() => {
+    res.status(201).send();
+  }).catch((error) => {
+    console.log(error);
+    res.status(400).send();
+  });
 }
 
 function updateBook(req, res) {
   console.log("updateBook", req.body);
   const book = req.body;
-  Books.updateBook(res, book);
+  Books.updateBook(book).then(() => {
+    res.status(202).send();
+  }).catch((error) => {
+    console.log(error);
+    res.status(400).send();
+  });
 }
 
 function getBook(req, res) {
@@ -34,7 +49,12 @@ function getBook(req, res) {
 
 function deleteBook(req, res) {
   const isbn = req.params.isbn;
-  Books.deleteBook(res, isbn);
+  Books.deleteBook(isbn).then(() => {
+    res.status(202).send();
+  }).catch((error) => {
+    console.log(error);
+    res.status(400).send();
+  });
 }
 
 function getData(req, rea) {
