@@ -4,7 +4,7 @@ const MongoClient = mongo.MongoClient;
 const URL = "mongodb://localhost:27017";
 const DATABASE_NAME = "bookshopdb";
 const COLLECTION_NAME = "books";
-var collection;
+var collection; // used to hold reference to mongodb collection
 
 /*
 Function sets up the mongodb database connection
@@ -17,7 +17,7 @@ function setupMongo() {
     { useNewUrlParser: true, useUnifiedTopology: true },
     function(err, client) {
       if (err) {
-        console.err("Problem connecting to MongoDB");
+        console.error("Problem connecting to MongoDB");
         throw err;
       }
       const database = client.db(DATABASE_NAME);
@@ -47,7 +47,6 @@ class BookError extends Error {
 function getAllBooks(res) {
   console.log("model.getAllBooks()");
   return collection.find().toArray((err, books) => {
-    console.log("Books found: ", books);
     if (err) throw err;
     console.log("model.getAllBooks() - setting response");
     res.json(books);
@@ -57,8 +56,8 @@ function getAllBooks(res) {
 function addBook(res, book) {
   collection.insertOne(book, (err, result) => {
     if (err) throw err;
-    console.log("1 document inserted: " + JSON.stringify(book));
-    res.send("Book added");
+    console.log(result + "document inserted: " + JSON.stringify(book));
+    res.status(201);
   });
 }
 
@@ -68,7 +67,7 @@ function updateBook(res, book) {
   collection.updateOne(query, newValues, (err, result) => {
     if (err) throw err;
     console.log("1 document updated: " + JSON.stringify(book));
-    res.send("Book updated");
+    res.status(202);
   });
 }
 
@@ -79,7 +78,7 @@ function deleteBook(res, isbn) {
   collection.deleteOne(query, (err, obj) => {
     if (err) throw err;
     console.log("1 document deleted: " + isbn);
-    res.send("Book deleted");
+    res.status(202);
   });
 }
 
