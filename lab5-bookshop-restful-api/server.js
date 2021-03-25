@@ -20,8 +20,8 @@ const mod = require(path.resolve(__dirname, "custom/mod"));
 
 // configure app to use bodyParser()
 // this will let us get the data from a POST
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // Set up routing for our services
 const router = express.Router();
