@@ -5,6 +5,7 @@ const http = require("http");
 const path = require('path')
 // Load custom module
 const mod = require(path.resolve(__dirname, "custom/mod"));
+// const messageOfTheDay = require(path.resolve(__dirname, "custom/mod")).messageOfTheDay;
 
 const server = http.createServer(function(req, res) {
   console.log("Handling", req.url);
@@ -17,6 +18,7 @@ const server = http.createServer(function(req, res) {
   else if (req.url == "/")
     // Use the custom module to generate a message of the day
     res.write("<h1>Hello Bookshop World!</h1><p>" + mod.messageOfTheDay() + "</p>");
+    //res.write("<h1>Hello Bookshop World!</h1><p>" + messageOfTheDay() + "</p>");
   else {
     res.writeHead(404);
     res.write("page not found");

@@ -13,5 +13,5 @@ function messageOfTheDay() {
   return msg;
 }
 
-// Don;t forget to export the message of the day fucntion
+// Don't forget to export the message of the day function
 module.exports = { messageOfTheDay };

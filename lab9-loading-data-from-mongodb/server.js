@@ -13,7 +13,7 @@ app.set("view engine", "pug");
 const config = require(path.resolve(__dirname,'config/default'));
 
 // Load user route definitions
-const books = require(path.resolve(__dirname,'routes/books'));
+const books = require(path.resolve(__dirname,'controllers/books'));
 
 // Load custom module
 const mod = require(path.resolve(__dirname, "custom/mod"));
@@ -81,7 +81,7 @@ app.use(function(err, req, res, next) {
 // Start listening on default Port
 app.listen(config.port, () => {
   console.log("Bookshop Started");
-  console.log("Server Running - http://localhost:" + config.port);
+  console.log("Server Running - http://localhost:" + config.port + "/api/books");
   books.setupMongo();
 });
 
