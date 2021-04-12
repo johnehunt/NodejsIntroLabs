@@ -18,6 +18,13 @@ if (options.debug) console.log('debug mode turned on');
 if (options.long) console.log('This provides long form information');
 if (options.printer) console.log(`printer ${options.printer}`);
 
+// Load and configure dotenv
+const dotenv = require("dotenv");
+const environment = dotenv.config();
+if (environment.error) {
+  throw environment.error;
+}
+
 // Create a server that will respond to different URLs
 const server = http.createServer(function(req, res) {
   // Access the request URL via req.url property
@@ -38,8 +45,8 @@ const server = http.createServer(function(req, res) {
   res.end();
 });
 
-console.log("Bookshop Server Listening on port 8080");
-server.listen(8080);
+console.log(`Bookshop Server Listening on port ${process.env.PORT}`);
+server.listen(process.env.PORT);
 
 console.log("Bookshop Server Started");
-console.log("Try http://localhost:8080/");
+console.log(`Try http://localhost:${process.env.PORT}/`);
