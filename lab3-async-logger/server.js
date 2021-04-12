@@ -44,8 +44,8 @@ eventEmitter.on("LogEvent", logEventHandler);
 const server = http.createServer(function(req, res) {
   // Access the request URL via req.url property
   // Determine the response based on the submitted url
-  console.log("Handling", req.url);
-  //Fire the NewUserEvent
+
+  //Fire the LogEvent
   eventEmitter.emit("LogEvent", req.url);
   if (req.url == "/contact")
     res.write("<h1>Bookshop Contacts</h1><p> Contact Info.</p>");
