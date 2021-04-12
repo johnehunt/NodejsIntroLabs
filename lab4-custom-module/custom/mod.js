@@ -1,4 +1,5 @@
 console.log("setting up custom module values");
+
 const messages = ["Welcome", "Hello", "Hi There", "Goodday"];
 var index = 0;
 
