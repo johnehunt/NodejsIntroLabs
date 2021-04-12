@@ -1736,3 +1736,14 @@ node_modules/yargs-unparser/node_modules/yargs/locales/th.json
 node_modules/yargs-unparser/node_modules/yargs/locales/tr.json
 node_modules/yargs-unparser/node_modules/yargs/locales/zh_CN.json
 node_modules/yargs-unparser/node_modules/yargs/locales/zh_TW.json
+node_modules/commander/esm.mjs
+.gitignore
+node_modules/commander/LICENSE
+node_modules/commander/package-support.json
+.gitignore
+node_modules/commander/Readme.md
+.gitignore
+node_modules/commander/package.json
+node_modules/commander/index.js
+node_modules/commander/typings/index.d.ts
+node_modules/commander/CHANGELOG.md
