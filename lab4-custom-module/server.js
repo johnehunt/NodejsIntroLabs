@@ -7,6 +7,10 @@ const path = require('path')
 const mod = require(path.resolve(__dirname, "custom/mod"));
 // const messageOfTheDay = require(path.resolve(__dirname, "custom/mod")).messageOfTheDay;
 
+// Load events module
+const events = require("events");
+const eventEmitter = new events.EventEmitter();
+
 // Load commander module
 const commander = require('commander');
 
@@ -31,8 +35,18 @@ if (environment.error) {
   throw environment.error;
 }
 
+// Set up Log Event Handler
+// Create an event handler / callback
+function logEventHandler(msg) {
+  console.log('logEventHandler Handler Called ' + msg);
+};
+
+//Assign the event handler callback to an event:
+eventEmitter.on("LogEvent", logEventHandler);
+
 const server = http.createServer(function(req, res) {
-  console.log("Handling", req.url);
+  //Fire the LogEvent
+  eventEmitter.emit("LogEvent", req.url);
   if (req.url == "/contact")
     res.write("<h1>Bookshop Contacts</h1><p> Contact Info.</p>");
   else if (req.url == "/about")
