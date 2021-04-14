@@ -1,3 +1,4 @@
+// Custom exception class fo ruse with bookshop model
 class BookError extends Error {
   constructor(args) {
     super(args);
@@ -11,12 +12,12 @@ var books = [];
 // Set up some initial data
 books[1] = {
   isbn: 1,
-  author: "Jos Jones",
+  author: "Jasmine Jones",
   title: "JavaScript Today",
   price: 15.55
 };
-books[321] = {
-  isbn: 321,
+books[2] = {
+  isbn: 2,
   author: "Phoebe Davies",
   title: "TypeScript World",
   price: 14.95
