@@ -10,17 +10,23 @@ class BookError extends Error {
 var books = [];
 
 // Set up some initial data
-books[1] = {
-  isbn: 1,
+books[0] = {
+  isbn: 0,
   author: "Jasmine Jones",
   title: "JavaScript Today",
   price: 15.55
 };
-books[2] = {
-  isbn: 2,
+books[1] = {
+  isbn: 1,
   author: "Phoebe Davies",
   title: "TypeScript World",
   price: 14.95
+};
+books[2] = {
+  isbn: 2,
+  author: "Adam Smith",
+  title: "Node Unleashed",
+  price: 13.95
 };
 
 // Define models functions
@@ -34,8 +40,8 @@ function addBook(book) {
 }
 
 function updateBook(book) {
-  if (!(isbn in books)) {
-    throw new BookError("Unknown book with ISBN " + isbn);
+  if (!(book.isbn in books)) {
+    throw new BookError("Unknown book with ISBN " + book.isbn);
   }
   books[book.isbn] = book;
 }

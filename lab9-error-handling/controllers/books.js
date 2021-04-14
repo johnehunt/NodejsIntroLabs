@@ -15,14 +15,14 @@ function postBook(req, res) {
   console.log("postBook", req.body);
   const book = req.body;
   Books.addBook(book);
-  res.send("Book added");
+  res.status(201).send("Book added");
 }
 
 function updateBook(req, res) {
   console.log("updateBook", req.body);
   const book = req.body;
   Books.updateBook(book);
-  res.send("Book updated");
+  res.status(201).send("Book updated");
 }
 
 function getBook(req, res) {
@@ -37,7 +37,7 @@ function getBook(req, res) {
 function deleteBook(req, res) {
   const id = req.params.id;
   Books.deleteBook(id);
-  res.send("Book deleted");
+  res.status(204).send("Book deleted");
 }
 
 function getData(req, res) {
