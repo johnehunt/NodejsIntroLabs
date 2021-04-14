@@ -60,7 +60,6 @@ describe("Testing book REST API", function() {
       .delete(PATH + "/1")
       .end(function(err, res) {
         res.should.have.status(204);
-        res.text.should.be.equal("Book deleted");
         done();
       });
   });
