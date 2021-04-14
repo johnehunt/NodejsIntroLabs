@@ -22,6 +22,9 @@ app.get("/", (req, res) => {
 app.use(express.static(path.resolve(__dirname,"public")));
 
 app.listen(8080, () => {
-  console.log("Booksup Started");
+  console.log("Bookshop Started");
   console.log("Bookshop Server Running - http://localhost:8080");
+  console.log("\t see also - http://localhost:8080/about.html");
+  console.log("\t see also - http://localhost:8080/contact.html");
+  console.log("\t see also - http://localhost:8080/help.html");
 });
