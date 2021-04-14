@@ -1,4 +1,8 @@
-// Load Models
+// Load built-in modules
+const fs = require('fs');
+const path = require('path')
+
+// Load custom modules
 const Books = require("../models/books");
 
 // Defines Controller functions
@@ -37,7 +41,9 @@ function deleteBook(req, res) {
 }
 
 function getData(req, res) {
-  const readStream = createReadStream("./data.txt");
+  const filename = path.resolve(__dirname,'../data.txt')
+  console.log(`Loading ${filename}`)
+  const readStream = fs.createReadStream(filename);
   readStream.on("data", data => {
     res.write(data);
   });
