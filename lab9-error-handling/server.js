@@ -56,7 +56,7 @@ router
   .get(controllers.getBook)
   .delete(controllers.deleteBook);
 
-  router
+router
   .route("/data")
   .get(controllers.getData);
 
@@ -82,6 +82,9 @@ app.use(function(err, req, res, next) {
 app.listen(config.port, () => {
   console.log("Bookshop Started");
   console.log("Server Running - http://localhost:" + config.port);
+  console.log('\t see also - http://localhost:8080/api/books');
+  console.log('\t see also - http://localhost:8080/api/books/1');
+  console.log('\t see also - http://localhost:8080/api/data');
 });
 
 module.exports = app; // for testing purposes only

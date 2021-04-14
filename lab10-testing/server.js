@@ -13,7 +13,7 @@ app.set("view engine", "pug");
 const config = require(path.resolve(__dirname,'config/default'));
 
 // Load user route definitions
-const books = require(path.resolve(__dirname,'routes/books'));
+const controllers = require(path.resolve(__dirname,'controllers/books'));
 
 // Load custom module
 const mod = require(path.resolve(__dirname, "custom/mod"));
@@ -47,22 +47,43 @@ app.use(express.static(path.resolve(__dirname,"public")));
 
 router
   .route("/books")
-  .get(books.getBooks)
-  .post(books.postBook)
-  .put(books.updateBook);
+  .get(controllers.getBooks)
+  .post(controllers.postBook)
+  .put(controllers.updateBook);
 
 router
   .route("/books/:isbn")
-  .get(books.getBook)
-  .delete(books.deleteBook);
+  .get(controllers.getBook)
+  .delete(controllers.deleteBook);
+  router
+  .route("/data")
+  .get(controllers.getData);
 
 // All routes will be prefixed with /api
 app.use("/api", router);
+
+// Set up default error handler for Express
+// Define last, after other app.use() and routes calls
+// Note this function takes four arguments (err, req, res, next)
+function logErrors(err, req, res, next) {
+  console.error(err.stack);
+  next(err);
+}
+app.use(logErrors);
+
+// Can have more then one error handler
+app.use(function(err, req, res, next) {
+  console.error(err.stack);
+  res.status(500).send("Something went wrong!");
+});
 
 // Start listening on default Port
 app.listen(config.port, () => {
   console.log("Bookshop Started");
   console.log("Server Running - http://localhost:" + config.port);
+  console.log('\t see also - http://localhost:8080/api/books');
+  console.log('\t see also - http://localhost:8080/api/books/1');
+  console.log('\t see also - http://localhost:8080/api/data');
 });
 
 module.exports = app; // for testing purposes only

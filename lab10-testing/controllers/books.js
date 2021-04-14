@@ -1,4 +1,8 @@
-// Load Models
+// Load built-in modules
+const fs = require('fs');
+const path = require('path')
+
+// Load custom modules
 const Books = require("../models/books");
 
 // Defines Controller functions
@@ -31,10 +35,22 @@ function getBook(req, res) {
 }
 
 function deleteBook(req, res) {
-    const id = req.params.id;
-    Books.deleteBook(id);
+  const id = req.params.id;
+  Books.deleteBook(id);
   res.send("Book deleted");
 }
 
+function getData(req, res) {
+  const filename = path.resolve(__dirname,'../data.txt')
+  console.log(`Loading ${filename}`)
+  const readStream = fs.createReadStream(filename);
+  readStream.on("data", data => {
+    res.write(data);
+  });
+  readStream.on("end", data => {
+    res.status(200).send();
+  });
+}
+
 // Now export functions from module
-module.exports = {getBooks, getBook, postBook, updateBook, deleteBook}
+module.exports = { getBooks, getBook, postBook, updateBook, deleteBook, getData };
