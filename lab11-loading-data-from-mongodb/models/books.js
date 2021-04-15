@@ -1,7 +1,7 @@
 const mongo = require("mongodb");
 const MongoClient = mongo.MongoClient;
 
-const URL = "mongodb://localhost:27017";
+const URL = "mongodb://127.0.0.1:27017";
 const DATABASE_NAME = "bookshopdb";
 const COLLECTION_NAME = "books";
 var collection; // used to hold reference to mongodb collection
@@ -11,25 +11,26 @@ Function sets up the mongodb database connection
 and obtains a reference to the collection which is used throughout
 this example
 */
-function setupMongo() {
-  MongoClient.connect(
-    URL,
-    { useNewUrlParser: true, useUnifiedTopology: true },
-    function (err, client) {
-      if (err) {
-        console.error("Problem connecting to MongoDB");
-        throw err;
-      }
+function setupMongoConnection() {
+  return MongoClient
+    .connect(URL, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    })
+    .then((client) => {
       const database = client.db(DATABASE_NAME);
       collection = database.collection(COLLECTION_NAME);
       console.log(
         "Connected to '" +
-        DATABASE_NAME +
-        "' using collection " +
-        COLLECTION_NAME
+          DATABASE_NAME +
+          "' using collection " +
+          COLLECTION_NAME
       );
-    }
-  );
+    })
+    .catch((err) => {
+      console.err("Problem connecting to MongoDB");
+      throw err;
+    });
 }
 
 class BookError extends Error {
@@ -102,5 +103,5 @@ module.exports = {
   updateBook,
   deleteBook,
   BookError,
-  setupMongo
+  setupMongoConnection
 };

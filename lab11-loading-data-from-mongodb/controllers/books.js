@@ -1,8 +1,10 @@
 // Load Models
 const Books = require("../models/books");
 
-function setupMongo() {
-  Books.setupMongo();
+// Provides gateway through to model
+// used for initialiing  Mongo db 
+function setup() {
+  return Books.setupMongoConnection()
 }
 
 // Defines Controller functions
@@ -87,5 +89,5 @@ module.exports = {
   updateBook,
   deleteBook,
   getData,
-  setupMongo,
+  setup,
 };
