@@ -55,9 +55,14 @@ router
   .route("/books/:isbn")
   .get(controllers.getBook)
   .delete(controllers.deleteBook);
-  router
+ 
+router
   .route("/data")
   .get(controllers.getData);
+
+router
+  .route("/info")
+  .get(controllers.getBookDetails);
 
 // All routes will be prefixed with /api
 app.use("/api", router);
@@ -84,6 +89,7 @@ app.listen(config.port, () => {
   console.log(`\t see also - http://localhost:${config.port}/api/books`);
   console.log(`\t see also - http://localhost:${config.port}/api/books/1`);
   console.log(`\t see also - http://localhost:${config.port}/api/data`);
+  console.log(`\t see also - http://localhost:${config.port}/api/info`);
 });
 
 module.exports = app; // for testing purposes only

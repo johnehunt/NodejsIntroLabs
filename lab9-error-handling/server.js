@@ -60,12 +60,12 @@ router
   .route("/data")
   .get(controllers.getData);
 
-// All routes will be prefixed with /api
-app.use("/api", router);
-
 router
   .route("/info")
   .get(controllers.getBookDetails);
+
+// All routes will be prefixed with /api
+app.use("/api", router);
 
 // Set up default error handler for Express
 // Define last, after other app.use() and routes calls

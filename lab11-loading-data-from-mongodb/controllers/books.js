@@ -4,6 +4,7 @@ const path = require('path')
 
 // Load Custom Models
 const Books = require("../models/books");
+const Service = require("../services/books");
 
 // Provides gateway through to model
 // used for initialiing  Mongo db 
@@ -87,6 +88,20 @@ function getData(req, res) {
   });
 }
 
+function getBookDetails(req, res) {
+  console.log('Calling getBookDetails()');
+  Service
+    .getBookDetails()
+    .then((bookInfo) => {
+      console.log(`processing promise result: ${bookInfo}`)
+      res.json(bookInfo);
+    })
+    .catch((error) => {
+      console.log(error);
+      res.status(500).send();
+    });
+}
+
 // Now export functions from module
 module.exports = {
   getAllBooks,
@@ -96,4 +111,5 @@ module.exports = {
   deleteBook,
   getData,
   setup,
+  getBookDetails
 };
