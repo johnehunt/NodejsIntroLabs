@@ -33,6 +33,7 @@ function setupMongoConnection() {
     });
 }
 
+// Exception for use with bad isbns 
 class BookError extends Error {
   constructor(args) {
     super(args);
@@ -41,59 +42,31 @@ class BookError extends Error {
 }
 
 // Define models functions
-// Now these have bene updated to take a response object
-// so that the callback and provide a response back to the client when
-// it runs - avoids use of awaits etc.
+// Now these have been updated return a promise, the invoking 
+// cocde can provide a then behaviour - avoids use of awaits etc.
 
 function getAllBooks() {
   console.log("model.getAllBooks()");
-  const promise = new Promise((resolve, reject) => {
-    collection.find().toArray((err, books) => {
-      if (err) reject(err);
-      console.log("model.getAllBooks() - setting response");
-      resolve(books);
-    });
-  });
-  return promise;
+  return collection.find().toArray()
 }
 
-
 function addBook(book) {
-  const promise = new Promise((resolve, reject) => {
-    collection.insertOne(book, (err, result) => {
-      if (err) reject(err);
-      console.log("1 document inserted: " + JSON.stringify(book));
-      resolve();
-    });
-  });
-  return promise;
+  console.log(`Adding book ${book}`);
+  return collection.insertOne(book);
 }
 
 function updateBook(book) {
-  const promise = new Promise((resolve, reject) => {
-    const query = { isbn: book.isbn };
-    const newValues = { $set: book };
-    collection.updateOne(query, newValues, (err, result) => {
-      if (err) reject(err);
-      console.log("1 document updated: " + JSON.stringify(book));
-      resolve();
-    });
-  });
-  return promise;
+  console.log(`Updating book ${book}`);
+  const query = { isbn: book.isbn };
+  const newValues = { $set: book };
+  return collection.updateOne(query, newValues);
 }
 
 function deleteBook(isbn) {
-  const promise = new Promise((resolve, reject) => {
-    // Note need to parseInt as isbn is a number
-    const query = { isbn: parseInt(isbn) };
-    console.log("Deleting ", query);
-    collection.deleteOne(query, (err, obj) => {
-      if (err) reject(err);
-      console.log("1 document deleted: " + isbn);
-      resolve();
-    });
-  });
-  return promise;
+  // Note need to parseInt as isbn is a number
+  const query = { isbn: parseInt(isbn) };
+  console.log("Deleting ", query);
+  return collection.deleteOne(query);
 }
 
 // Export functions from Module
