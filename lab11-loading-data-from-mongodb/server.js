@@ -56,7 +56,9 @@ router
   .get(controllers.getBook)
   .delete(controllers.deleteBook);
 
-router.route("/data").get(controllers.getData);
+router
+  .route("/data")
+  .get(controllers.getData);
 
 // All routes will be prefixed with /api
 app.use("/api", router);
@@ -83,13 +85,10 @@ controllers
   // configured start the server listening on default Port
   app.listen(config.port, () => {
     console.log("Bookshop Started");
-    console.log(
-      console.log("Bookshop Started");
-      console.log("Server Running - http://localhost:" + config.port);
-      console.log(`\t see also - http://localhost:${config.port}/api/books`);
-      console.log(`\t see also - http://localhost:${config.port}/api/books/1`);
-      console.log(`\t see also - http://localhost:${config.port}/api/data`);
-    );
+    console.log("Server Running - http://localhost:" + config.port);
+    console.log(`\t see also - http://localhost:${config.port}/api/books`);
+    console.log(`\t see also - http://localhost:${config.port}/api/books/1`);
+    console.log(`\t see also - http://localhost:${config.port}/api/data`);
   });
 });
 
