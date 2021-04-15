@@ -1,4 +1,8 @@
-// Load Models
+// Load built-in modules
+const fs = require('fs');
+const path = require('path')
+
+// Load Custom Models
 const Books = require("../models/books");
 
 // Provides gateway through to model
@@ -71,12 +75,14 @@ function deleteBook(req, res) {
     });
 }
 
-function getData(req, rea) {
-  const readStream = createReadStream("./data.txt");
-  readStream.on("data", (data) => {
+function getData(req, res) {
+  const filename = path.resolve(__dirname,'../data.txt')
+  console.log(`Loading ${filename}`)
+  const readStream = fs.createReadStream(filename);
+  readStream.on("data", data => {
     res.write(data);
   });
-  readStream.on("end", (data) => {
+  readStream.on("end", data => {
     res.status(200).send();
   });
 }
