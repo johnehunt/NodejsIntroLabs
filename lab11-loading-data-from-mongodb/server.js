@@ -45,6 +45,7 @@ app.get("/", (req, res) => {
 // Serve up static files automatically
 app.use(express.static(path.resolve(__dirname, "public")));
 
+// Set up routing information
 router
   .route("/books")
   .get(controllers.getAllBooks)
