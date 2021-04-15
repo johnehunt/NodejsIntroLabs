@@ -1743,3 +1743,5 @@ node_modules/commander/package-support.json
 .gitignore
 node_modules/commander
 node_modules/dotenv
+node_modules/node-fetch
+node_modules/.package-lock.json
