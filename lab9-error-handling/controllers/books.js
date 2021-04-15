@@ -4,6 +4,7 @@ const path = require('path')
 
 // Load custom modules
 const Books = require("../models/books");
+const Service = require("../services/books");
 
 // Defines Controller functions
 function getBooks(req, res) {
@@ -52,5 +53,19 @@ function getData(req, res) {
   });
 }
 
+function getBookDetails(req, res) {
+  console.log('Calling getBookDetails()');
+  Service
+    .getBookDetails()
+    .then((bookInfo) => {
+      console.log(`processing promise result: ${bookInfo}`)
+      res.json(bookInfo);
+    })
+    .catch((error) => {
+      console.log(error);
+      res.status(500).send();
+    });
+}
+
 // Now export functions from module
-module.exports = { getBooks, getBook, postBook, updateBook, deleteBook, getData };
+module.exports = { getBooks, getBook, postBook, updateBook, deleteBook, getData, getBookDetails };

@@ -63,6 +63,10 @@ router
 // All routes will be prefixed with /api
 app.use("/api", router);
 
+router
+  .route("/info")
+  .get(controllers.getBookDetails);
+
 // Set up default error handler for Express
 // Define last, after other app.use() and routes calls
 // Note this function takes four arguments (err, req, res, next)
@@ -85,6 +89,7 @@ app.listen(config.port, () => {
   console.log(`\t see also - http://localhost:${config.port}/api/books`);
   console.log(`\t see also - http://localhost:${config.port}/api/books/1`);
   console.log(`\t see also - http://localhost:${config.port}/api/data`);
+  console.log(`\t see also - http://localhost:${config.port}/api/info`);
 });
 
 module.exports = app; // for testing purposes only
