@@ -1,5 +1,5 @@
 // Define how data is held
-var books = [];
+const books = [];
 
 // Set up some initial data
 books[0] = { isbn: 1, author: "Jasmine Jones", title: "JavaScript Today", price: 15.55 };
