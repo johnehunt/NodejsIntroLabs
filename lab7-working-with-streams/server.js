@@ -53,7 +53,7 @@ router
   .get(controllers.getBook)
   .delete(controllers.deleteBook);
 
-  router
+router
   .route("/data")
   .get(controllers.getData);
 
