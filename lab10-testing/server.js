@@ -2,9 +2,6 @@ const express = require("express");
 const path = require("path");
 const app = express();
 
-// To allow body to be parsed
-const bodyParser = require("body-parser");
-
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
