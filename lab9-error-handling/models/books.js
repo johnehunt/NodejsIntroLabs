@@ -1,4 +1,4 @@
-// Custom exception class fo ruse with bookshop model
+// Custom exception class for use with bookshop model
 class BookError extends Error {
   constructor(args) {
     super(args);
