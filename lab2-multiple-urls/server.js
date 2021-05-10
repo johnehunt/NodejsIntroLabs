@@ -13,6 +13,7 @@ if (environment.error) {
 const server = http.createServer(function(req, res) {
   // Access the request URL via req.url property
   // Determine the response based on the submitted url
+  // Note that the order is not significant
   console.log("Handling", req.url);
   if (req.url == "/contact")
     res.write("<h1>Bookshop Contacts</h1><p> Contact Info.</p>");
