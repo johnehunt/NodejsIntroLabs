@@ -1,22 +1,6 @@
 console.log("Starting Bookshop HTTP Server");
 // Load required http module
 const http = require("http");
-// Load commander module
-const commander = require('commander');
-
-// Check commander for actions
-commander
-  .option('-d, --debug', 'output extra debugging')
-  .option('-l, --long', 'provide long form information')
-  .option('-p, --printer <message>', 'pretty print a message', 'hello');
-
-commander.parse(process.argv);
-
-const options = commander.opts();
-
-if (options.debug) console.log('debug mode turned on');
-if (options.long) console.log('This provides long form information');
-if (options.printer) console.log(`printer ${options.printer}`);
 
 // Load and configure dotenv
 const dotenv = require("dotenv");
