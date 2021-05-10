@@ -3,7 +3,7 @@ console.log("Starting Bookshop HTTP Server");
 // Load required http module
 const http = require("http");
 
-// Load events module
+// Load events module and configure eventEmitter
 const events = require("events");
 const eventEmitter = new events.EventEmitter();
 
