@@ -2,8 +2,8 @@ const express = require("express");
 const path = require("path");
 const app = express();
 
-// To allow body to be parsed
-const bodyParser = require("body-parser");
+// To allow body to be parsed pre Express 4.16
+// const bodyParser = require("body-parser");
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -17,6 +17,11 @@ const controllers = require(path.resolve(__dirname, "controllers/books.js"));
 
 // Load custom module
 const mod = require(path.resolve(__dirname, "custom/mod"));
+
+// configure app to use bodyParser() pre 4.16
+// this will let us get the data from a POST
+//app.use(bodyParser.json());
+//app.use(bodyParser.urlencoded({ extended: true }));
 
 // configure app to parse the request body for post and put
 app.use(express.json());
