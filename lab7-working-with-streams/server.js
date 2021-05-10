@@ -68,5 +68,3 @@ app.listen(config.port, () => {
   console.log(`\t see also - http://localhost:${config.port}/api/books/1`);
   console.log(`\t see also - http://localhost:${config.port}/api/data`);
 });
-
-module.exports = app; // for testing purposes only
