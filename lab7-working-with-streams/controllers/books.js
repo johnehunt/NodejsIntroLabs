@@ -35,8 +35,8 @@ function getBook(req, res) {
 }
 
 function deleteBook(req, res) {
-  const id = req.params.id;
-  Books.deleteBook(id);
+  const isbn = req.params.isbn;
+  Books.deleteBook(isbn);
   res.status(204).send("Book deleted");
 }
 
