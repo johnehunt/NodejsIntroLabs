@@ -68,6 +68,10 @@ app.use("/api", router);
 app.listen(config.port, () => {
   console.log("Bookshop Started");
   console.log("Server Running - http://localhost:" + config.port);
+  console.log("\t see also - http://localhost:8080/about.html");
+  console.log("\t see also - http://localhost:8080/contact.html");
+  console.log("\t see also - http://localhost:8080/help.html");
+  console.log('For the service API see:')
   console.log(`\t see also - http://localhost:${config.port}/api/books`);
   console.log(`\t see also - http://localhost:${config.port}/api/books/1`);
   console.log(`\t see also - http://localhost:${config.port}/api/data`);
