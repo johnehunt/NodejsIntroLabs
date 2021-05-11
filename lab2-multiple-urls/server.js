@@ -2,13 +2,6 @@ console.log("Starting Bookshop HTTP Server");
 // Load required http module
 const http = require("http");
 
-// Load and configure dotenv
-const dotenv = require("dotenv");
-const environment = dotenv.config();
-if (environment.error) {
-  throw environment.error;
-}
-
 // Create a server that will respond to different URLs
 const server = http.createServer(function(req, res) {
   // Access the request URL via req.url property
@@ -30,8 +23,7 @@ const server = http.createServer(function(req, res) {
   res.end();
 });
 
-console.log(`Bookshop Server Listening on port ${process.env.PORT}`);
-server.listen(process.env.PORT);
+server.listen(8080);
 
-console.log("Bookshop Server Started");
-console.log(`Try http://localhost:${process.env.PORT}/`);
+console.log('Bookshop Server Started');
+console.log('Try http://localhost:8080/');

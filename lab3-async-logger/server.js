@@ -7,13 +7,6 @@ const http = require("http");
 const events = require("events");
 const eventEmitter = new events.EventEmitter();
 
-// Load and configure dotenv
-const dotenv = require("dotenv");
-const environment = dotenv.config();
-if (environment.error) {
-  throw environment.error;
-}
-
 // Set up Log Event Handler
 // Create an event handler / callback
 function logEventHandler(msg) {
@@ -45,8 +38,7 @@ const server = http.createServer(function(req, res) {
   res.end();
 });
 
-console.log(`Bookshop Server Listening on port ${process.env.PORT}`);
-server.listen(process.env.PORT);
+server.listen(8080);
 
-console.log("Bookshop Server Started");
-console.log(`Try http://localhost:${process.env.PORT}/`);
+console.log('Bookshop Server Started');
+console.log('Try http://localhost:8080/');
