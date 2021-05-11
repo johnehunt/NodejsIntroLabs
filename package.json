@@ -22,7 +22,7 @@
     "mocha": "^8.3.2"
   },
   "scripts": {
-    "test": "mocha lab6-testing/test/**/*.js"
+    "test": "mocha lab10-testing/test/**/*.js"
   },
   "repository": {
     "type": "git",
