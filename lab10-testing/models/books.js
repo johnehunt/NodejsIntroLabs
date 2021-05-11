@@ -11,19 +11,19 @@ var books = [];
 
 // Set up some initial data
 books[0] = {
-  isbn: 0,
+  isbn: '0',
   author: "Jasmine Jones",
   title: "JavaScript Today",
   price: 15.55
 };
 books[1] = {
-  isbn: 1,
+  isbn: '1',
   author: "Phoebe Davies",
   title: "TypeScript World",
   price: 14.95
 };
 books[2] = {
-  isbn: 2,
+  isbn: '2',
   author: "Adam Smith",
   title: "Node Unleashed",
   price: 13.95
@@ -47,6 +47,8 @@ function updateBook(book) {
 }
 
 function deleteBook(isbn) {
+  console.log(books);
+  console.log(isbn);
   if (!(isbn in books)) {
     throw new BookError("Unknown book with ISBN " + isbn);
   }

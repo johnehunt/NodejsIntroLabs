@@ -1,12 +1,12 @@
 const chai = require("chai");
 const chaiHttp = require("chai-http");
 const should = chai.should();
+chai.use(chaiHttp);
 
 // Import server to be tested
 const server = require("../server");
 
-chai.use(chaiHttp);
-
+// Set up the common path to all of the RESTful services
 const PATH = "/api/books";
 
 describe("Testing book REST API", function() {
@@ -18,17 +18,19 @@ describe("Testing book REST API", function() {
         res.should.have.status(200);
         res.should.be.json;
         res.body.should.be.a("array");
+        res.body.should.have.length(3);
         done();
       });
   });
   it("should list a SINGLE book on /books/<isbn> GET", function(done) {
     chai
       .request(server)
-      .get(PATH + "/1")
+      .get(PATH + "/0")
       .end(function(err, res) {
         res.should.have.status(200);
         res.should.be.json;
         res.body.should.be.a("object");
+        res.body.should.have.property('isbn', '0');
         done();
       });
   });
@@ -36,7 +38,7 @@ describe("Testing book REST API", function() {
     chai
       .request(server)
       .post(PATH)
-      .send({ id: "333", author: "Phoebe Davies", title: "Kotlin World", price: 11.95  })
+      .send({ isbn: "3", author: "Gryff Davies", title: "Kotlin World", price: 11.95  })
       .end(function(err, res) {
         res.should.have.status(201);
         res.text.should.equal("Book added");
@@ -47,7 +49,7 @@ describe("Testing book REST API", function() {
     chai
       .request(server)
       .put(PATH)
-      .send({ id: "2", author: "Phoebe Davies", title: "TypeScript World", price: 11.95  })
+      .send({ isbn: '2', author: "Phoebe Davies", title: "TypeScript World", price: 11.95  })
       .end(function(err, res) {
         res.should.have.status(201);
         res.text.should.equal("Book updated");
