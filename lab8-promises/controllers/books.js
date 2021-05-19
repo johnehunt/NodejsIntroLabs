@@ -67,6 +67,19 @@ function getBookDetails(req, res) {
     });
 }
 
+// Alternative style using async and await
+async function getBookDetails2(req, res) {
+  console.log('Calling getBookDetails2()');
+  const bookInfo = await Service.getBookDetails();
+  if (bookInfo) {
+    console.log(`processing promise result: ${bookInfo}`)
+    res.json(bookInfo);
+  } else {
+    console.log(error);
+    res.status(500).send();
+  }
+}
+
 // Now export functions from module
 module.exports = { 
   getBooks, 
@@ -75,4 +88,6 @@ module.exports = {
   updateBook, 
   deleteBook, 
   getData,
-  getBookDetails };
+  getBookDetails,
+  getBookDetails2
+ };
