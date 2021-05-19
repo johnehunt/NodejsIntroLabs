@@ -68,7 +68,7 @@ app.use("/api", router);
 // Define last, after other app.use() and routes calls
 // Note this function takes four arguments (err, req, res, next)
 function logErrors(err, req, res, next) {
-  console.error(err.stack);
+  console.error(err.message);
   next(err);
 }
 app.use(logErrors);
